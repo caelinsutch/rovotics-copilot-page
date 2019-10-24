@@ -6,7 +6,6 @@ import {
   NbMenuModule,
   NbSearchModule,
   NbSidebarModule,
-  NbUserModule,
   NbContextMenuModule,
   NbButtonModule,
   NbSelectModule,
@@ -14,7 +13,6 @@ import {
   NbThemeModule, NbAlertModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbSecurityModule } from '@nebular/security';
 
 import {
   FooterComponent,

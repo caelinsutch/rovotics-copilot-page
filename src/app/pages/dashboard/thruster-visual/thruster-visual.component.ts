@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'dashboard-thruster-visual',
+  selector: 'ngx-thruster-visual',
   templateUrl: './thruster-visual.component.html',
-  styles: []
+  styles: [],
 })
 export class ThrusterVisualComponent implements OnInit {
 

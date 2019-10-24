@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'ngx-telemetry',
   templateUrl: './telemetry.component.html',
-  styles: []
+  styles: [],
 })
 export class TelemetryComponent implements OnInit {
 

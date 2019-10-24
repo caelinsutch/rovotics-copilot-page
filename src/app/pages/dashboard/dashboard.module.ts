@@ -34,8 +34,18 @@ const NB_MODULES = [
   NbBadgeModule,
 ];
 
+const COMPONENTS = [
+  DashboardComponent,
+  CameraSwitcherComponent,
+  ThrusterVisualComponent,
+  TelemetryComponent,
+  SensitivityComponent,
+  ThrusterGraphComponent,
+  VideoFeedComponent,
+]
+
 @NgModule({
   imports: [...NB_MODULES, ThemeModule],
-  declarations: [DashboardComponent, CameraSwitcherComponent, ThrusterVisualComponent, TelemetryComponent, SensitivityComponent, ThrusterGraphComponent, VideoFeedComponent],
+  declarations: [...COMPONENTS],
 })
 export class DashboardModule { }
