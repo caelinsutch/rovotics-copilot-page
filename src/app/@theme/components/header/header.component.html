@@ -1,0 +1,23 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()">Rovotics</a>
+  </div>
+  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select>
+</div>
+
+<div class="header-container">
+  <nb-alert status="danger" class="my-auto mx-2">Topside Running</nb-alert>
+  <nb-alert status="danger" class="my-auto mx-2">Bottomside Running</nb-alert>
+  <nb-alert status="danger" class="my-auto mx-2">ROV Powered</nb-alert>
+  <nb-alert status="danger" class="my-auto mx-2">ROV Enabled</nb-alert>
+  <nb-icon icon="clock-outline" class="my-auto mx-2"></nb-icon>
+  <button nbButton hero status="success" class="mx-1" *ngIf="stopped" (click)="startTimer()">Start</button>
+  <button nbButton hero status="danger" class="mx-1" *ngIf="!stopped" (click)="stopTimer()">Stop</button>
+  <h1 class="mx-1">{{ displayMinutes }}:{{ displaySeconds }}</h1>
+  <button nbButton hero status="warning" class="mx-1" [disabled]="!stopped" (click)="resetTimer()">Reset</button>
+</div>
