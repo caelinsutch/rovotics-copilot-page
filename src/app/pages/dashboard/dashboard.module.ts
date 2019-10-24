@@ -42,7 +42,7 @@ const COMPONENTS = [
   SensitivityComponent,
   ThrusterGraphComponent,
   VideoFeedComponent,
-]
+];
 
 @NgModule({
   imports: [...NB_MODULES, ThemeModule],
