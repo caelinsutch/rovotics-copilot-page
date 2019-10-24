@@ -12,8 +12,8 @@
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/grid';
 
-// loading progress bar theme
-@import './pace.theme';
+// loading animation
+@import './loader';
 
 @import './layout';
 @import './overrides';
@@ -26,8 +26,6 @@
   @include nb-auth-global();
 
   @include ngx-layout();
-  // loading progress bar
-  @include ngx-pace-theme();
 
   @include nb-overrides();
 };
