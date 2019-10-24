@@ -6,7 +6,6 @@
 // framework component themes (styles tied to theme variables)
 @import '~@nebular/theme/styles/globals';
 @import '~@nebular/auth/styles/all';
-
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -14,7 +13,6 @@
 
 // loading animation
 @import './loader';
-
 @import './layout';
 @import './overrides';
 
@@ -24,8 +22,6 @@
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
-
   @include ngx-layout();
-
   @include nb-overrides();
-};
+}

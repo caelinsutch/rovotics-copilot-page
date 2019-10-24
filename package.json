@@ -1,13 +1,9 @@
 {
-  "name": "ngx-admin",
+  "name": "copilot-page",
   "version": "4.0.1",
   "license": "MIT",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
+    "type": "git"
   },
   "scripts": {
     "ng": "ng",
@@ -84,7 +80,8 @@
     "npm-run-all": "4.0.2",
     "protractor": "5.1.2",
     "rimraf": "2.6.1",
-    "stylelint": "7.13.0",
+    "stylelint": "10.1.0",
+    "stylelint-config-standard": "^19.0.0",
     "ts-node": "3.2.2",
     "tslint": "^5.7.0",
     "tslint-language-service": "^0.9.9",
