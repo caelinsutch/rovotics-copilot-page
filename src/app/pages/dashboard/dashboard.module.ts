@@ -1,16 +1,41 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule } from '@nebular/theme';
+import {
+  NbActionsModule, NbAlertModule, NbBadgeModule, NbButtonModule,
+  NbCardModule, NbContextMenuModule, NbIconModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbSearchModule, NbSelectModule,
+  NbSidebarModule,
+} from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
+import { CameraSwitcherComponent } from './camera-switcher/camera-switcher.component';
+import {NbEvaIconsModule} from '@nebular/eva-icons';
+import { ThrusterVisualComponent } from './thruster-visual/thruster-visual.component';
+import { TelemetryComponent } from './telemetry/telemetry.component';
+import { SensitivityComponent } from './sensitivity/sensitivity.component';
+import { ThrusterGraphComponent } from './thruster-graph/thruster-graph.component';
+import { VideoFeedComponent } from './video-feed/video-feed.component';
+
+const NB_MODULES = [
+  NbLayoutModule,
+  NbMenuModule,
+  NbActionsModule,
+  NbSearchModule,
+  NbSidebarModule,
+  NbContextMenuModule,
+  NbButtonModule,
+  NbSelectModule,
+  NbIconModule,
+  NbEvaIconsModule,
+  NbAlertModule,
+  NbCardModule,
+  NbBadgeModule,
+];
 
 @NgModule({
-  imports: [
-    NbCardModule,
-    ThemeModule,
-  ],
-  declarations: [
-    DashboardComponent,
-  ],
+  imports: [...NB_MODULES, ThemeModule],
+  declarations: [DashboardComponent, CameraSwitcherComponent, ThrusterVisualComponent, TelemetryComponent, SensitivityComponent, ThrusterGraphComponent, VideoFeedComponent],
 })
 export class DashboardModule { }

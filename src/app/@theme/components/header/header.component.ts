@@ -79,15 +79,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   displayMinutes = '00';
   timerInterval;
   stopped = true;
+  startButton = 't';
+  stopButton = 'y';
 
   keyPress(event) {
-    if (event.key == 't') {
+    if (event.key === this.startButton) {
       if (this.stopped) {
         this.startTimer();
       } else {
         this.stopTimer();
       }
-    } else if (event.key == 'y') {
+    } else if (event.key === this.stopButton) {
       if (this.stopped) {
         this.resetTimer();
       }

@@ -39,12 +39,10 @@ import { DARK_THEME } from './styles/theme.dark';
 const NB_MODULES = [
   NbLayoutModule,
   NbMenuModule,
-  NbUserModule,
   NbActionsModule,
   NbSearchModule,
   NbSidebarModule,
   NbContextMenuModule,
-  NbSecurityModule,
   NbButtonModule,
   NbSelectModule,
   NbIconModule,

@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>Cameras</nb-card-header>
+  <nb-card-body>
+  <div class="row">
+    <div class="col-3 my-2" *ngFor="let camera of cameras">
+      <button nbButton [outline]="!camera.activatedMain" [disabled]="!camera.connected" size="large" fullWidth
+              [status]="(camera.activatedMain || camera.activatedSecondary) ? 'success' : 'danger'">{{ camera.number }}</button>
+    </div>
+    <nb-badge text="3 cameras online" status="success" position="bottom right"></nb-badge>
+  </div>
+  </nb-card-body>
+</nb-card>
