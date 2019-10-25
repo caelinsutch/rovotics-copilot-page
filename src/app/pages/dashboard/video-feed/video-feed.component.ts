@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
       <nb-card size="giant">
           <nb-card-header>Video Feed</nb-card-header>
           <nb-card-body>
-              <div echarts [options]="option" class="echart"></div>
           </nb-card-body>
       </nb-card>
 

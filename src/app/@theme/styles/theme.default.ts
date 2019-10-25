@@ -19,7 +19,7 @@ export const DEFAULT_THEME = {
       thumbBorder: baseThemeVariables.primary,
     },
 
-    solar: {
+    thrusterTheme: {
       gradientLeft: baseThemeVariables.primary,
       gradientRight: baseThemeVariables.primary,
       shadowColor: 'rgba(0, 0, 0, 0)',

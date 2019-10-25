@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
+import {LayoutService} from './utils/layout.service';
 
 const DATA_SERVICES = [
   // TODO Update with correct data
@@ -12,7 +13,7 @@ const DATA_SERVICES = [
 
 
 export const NB_CORE_PROVIDERS = [
-  ...DATA_SERVICES,
+  LayoutService,
 ];
 
 @NgModule({
@@ -32,7 +33,7 @@ export class CoreModule {
     return <ModuleWithProviders>{
       ngModule: CoreModule,
       providers: [
-        // ...NB_CORE_PROVIDERS,
+        ...NB_CORE_PROVIDERS,
       ],
     };
   }

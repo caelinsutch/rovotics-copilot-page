@@ -13,7 +13,7 @@ export const CORPORATE_THEME = {
       thumbBorder: '#ffa36b',
     },
 
-    solar: {
+    thrusterTheme: {
       gradientLeft: baseThemeVariables.primary,
       gradientRight: baseThemeVariables.primary,
       shadowColor: 'rgba(0, 0, 0, 0)',
