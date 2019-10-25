@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import {
   NbActionsModule, NbAlertModule, NbBadgeModule, NbButtonModule,
   NbCardModule, NbContextMenuModule, NbIconModule,
-  NbLayoutModule,
+  NbLayoutModule, NbListModule,
   NbMenuModule,
   NbSearchModule, NbSelectModule,
-  NbSidebarModule,
+  NbSidebarModule, NbTabsetModule,
 } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -34,6 +34,8 @@ const NB_MODULES = [
   NbAlertModule,
   NbCardModule,
   NbBadgeModule,
+  NbTabsetModule,
+  NbListModule,
 ];
 
 const COMPONENTS = [
