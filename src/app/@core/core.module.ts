@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import {LayoutService} from './utils/layout.service';
 
-const DATA_SERVICES = [
-  // TODO Update with correct data
-  // Temporarily dumb to compile
-  // { provide: UserData, useClass: UserData },
-];
+// const DATA_SERVICES = [
+//   // TODO Update with correct data
+//   // Temporarily dumb to compile
+//   // { provide: UserData, useClass: UserData },
+// ];
 
 
 export const NB_CORE_PROVIDERS = [
