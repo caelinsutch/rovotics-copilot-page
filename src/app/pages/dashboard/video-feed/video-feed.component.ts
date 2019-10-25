@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-video-feed',
-  templateUrl: './video-feed.component.html',
+  template: `
+      <nb-card size="giant">
+          <nb-card-header>Video Feed</nb-card-header>
+          <nb-card-body>
+              <div echarts [options]="option" class="echart"></div>
+          </nb-card-body>
+      </nb-card>
+
+  `,
   styles: [],
 })
 export class VideoFeedComponent implements OnInit {
