@@ -1,3 +1,15 @@
-<p>
-  sensitivity works!
-</p>
+<nb-card size="small">
+  <nb-card-header>
+    Thruster Sensitivity
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(1, $event)" [inputSensitivity]="xSensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">X Axis - {{ xSensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(2, $event)" [inputSensitivity]="ySensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Y Axis - {{ ySensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(3, $event)" [inputSensitivity]="zSensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Z Axis - {{ zSensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(4, $event)"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Change All</p>
+  </nb-card-body>
+</nb-card>

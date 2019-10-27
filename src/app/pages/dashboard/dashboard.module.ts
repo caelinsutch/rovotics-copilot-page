@@ -19,6 +19,10 @@ import { ThrusterGraphComponent } from './thruster-graph/thruster-graph.componen
 import { VideoFeedComponent } from './video-feed/video-feed.component';
 import {NgxEchartsModule} from 'ngx-echarts';
 import { DialComponent } from './thruster-visual/dial.component';
+import { SensitivitySliderComponent } from './sensitivity/sensitivity-slider.component';
+import { DepthChartComponent } from './telemetry/backside/depth-chart.component';
+import { BacksideComponent } from './telemetry/backside/backside.component';
+import { FrontsideComponent } from './telemetry/frontside/frontside.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -50,6 +54,6 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [...NB_MODULES, ThemeModule, NgxEchartsModule],
-  declarations: [...COMPONENTS, DialComponent],
+  declarations: [...COMPONENTS, DialComponent, SensitivitySliderComponent, DepthChartComponent, BacksideComponent, FrontsideComponent],
 })
 export class DashboardModule { }

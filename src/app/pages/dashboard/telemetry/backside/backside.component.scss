@@ -1,0 +1,38 @@
+@import '../../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/typography/typography';
+
+@include nb-install-component() {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  nb-card-header {
+    flex-direction: row;
+    padding-top: nb-theme(card-header-with-select-padding-top);
+    padding-bottom: nb-theme(card-header-with-select-padding-bottom);
+  }
+
+  nb-card-body {
+    padding: 1rem 0 0;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  ngx-depth-chart {
+    flex: 1;
+    position: relative;
+
+    ::ng-deep {
+      canvas {
+        border-bottom-left-radius: nb-theme(card-border-radius);
+        border-bottom-right-radius: nb-theme(card-border-radius);
+      }
+
+      .echart {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

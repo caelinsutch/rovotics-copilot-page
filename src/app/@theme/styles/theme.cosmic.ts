@@ -292,17 +292,17 @@ export const COSMIC_THEME = {
     //   thirdPieShadowColor: 'rgba(0, 0, 0, 0)',
     // },
     //
-    // earningLine: {
-    //   gradFrom: baseThemeVariables.primary,
-    //   gradTo: baseThemeVariables.primary,
-    //
-    //   tooltipTextColor: baseThemeVariables.fgText,
-    //   tooltipFontWeight: 'normal',
-    //   tooltipFontSize: '16',
-    //   tooltipBg: baseThemeVariables.bg,
-    //   tooltipBorderColor: baseThemeVariables.border2,
-    //   tooltipBorderWidth: '1',
-    //   tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
-    // },
+    earningLine: {
+      gradFrom: baseThemeVariables.primary,
+      gradTo: baseThemeVariables.primary,
+
+      tooltipTextColor: baseThemeVariables.fgText,
+      tooltipFontWeight: 'normal',
+      tooltipFontSize: '16',
+      tooltipBg: baseThemeVariables.bg,
+      tooltipBorderColor: baseThemeVariables.border2,
+      tooltipBorderWidth: '1',
+      tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
+    },
   },
 } as NbJSThemeOptions;
