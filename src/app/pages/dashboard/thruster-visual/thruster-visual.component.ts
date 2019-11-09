@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ngx-thruster-visual',
   template: `
-    <nb-card size="small">
+    <nb-card size="tiny">
       <nb-card-header>Thrusters</nb-card-header>
       <nb-card-body>
         <div class="row">

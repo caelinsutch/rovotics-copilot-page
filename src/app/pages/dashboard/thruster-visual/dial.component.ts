@@ -16,7 +16,7 @@ declare const echarts: any;
   styles: [`
     .echart {
       /*left: 1em;*/
-      height: 8rem;
+      height: 6rem;
       /*width: 80%;*/
     }
   `],

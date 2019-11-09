@@ -60,6 +60,12 @@ export class CameraSwitcherComponent implements OnInit {
         activatedMain: false,
         activatedSecondary: false,
       },
+      {
+        number: 7,
+        connected: false,
+        activatedMain: false,
+        activatedSecondary: false,
+      },
     ];
   }
 

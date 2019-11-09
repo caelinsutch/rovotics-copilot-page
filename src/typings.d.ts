@@ -9,3 +9,5 @@ interface NodeModule {
 
 // @ts-ignore
 declare var echarts: any;
+
+declare var ROS: any;

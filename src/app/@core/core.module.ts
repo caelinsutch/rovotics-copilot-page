@@ -4,15 +4,10 @@ import { CommonModule } from '@angular/common';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import {LayoutService} from './utils/layout.service';
-
-// const DATA_SERVICES = [
-//   // TODO Update with correct data
-//   // Temporarily dumb to compile
-//   // { provide: UserData, useClass: UserData },
-// ];
-
+import {CommonBackendModule} from './backend/backend.module';
 
 export const NB_CORE_PROVIDERS = [
+  ...CommonBackendModule.forRoot().providers,
   LayoutService,
 ];
 
@@ -33,7 +28,7 @@ export class CoreModule {
     return <ModuleWithProviders>{
       ngModule: CoreModule,
       providers: [
-        ...NB_CORE_PROVIDERS,
+          ...NB_CORE_PROVIDERS,
       ],
     };
   }
