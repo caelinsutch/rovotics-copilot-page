@@ -5,7 +5,7 @@ import {
   NbLayoutModule, NbListModule,
   NbMenuModule,
   NbSearchModule, NbSelectModule,
-  NbSidebarModule, NbTabsetModule,
+  NbSidebarModule, NbTabsetModule, NbToggleModule,
 } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -42,6 +42,7 @@ const NB_MODULES = [
   NbBadgeModule,
   NbTabsetModule,
   NbListModule,
+  NbToggleModule,
 ];
 
 const COMPONENTS = [

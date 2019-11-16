@@ -33,6 +33,7 @@ export class RovService implements OnDestroy {
         {key: 'tcuPower', name: '/tcu/main_relay', messageType: 'std_msgs/Bool'},
         {key: 'externalTelemetry', name: '/rov/ms5837', messageType: 'ms5837/ms5837_data'},
         {key: 'verticalPidSetPoint', name: '/depth_hold/setpoint', messageType: 'std_msgs/Float64'},
+        {key: 'verticalPidEnable', name: '/depth_hold/pid_enable', messageType: 'std_msgs/Bool'},
         {key: 'test', name: '/test', messageType: 'std_msgs/UInt8'},
     ];
 

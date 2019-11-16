@@ -7,6 +7,7 @@ import {RovService} from '../../../@core/backend/services/rov.service';
     <nb-card size="tiny">
       <nb-card-header>
         Vertical PID
+        <nb-toggle style="height: 1.0rem" class="float-right mt-2" status="primary" (checkedChange)="togglePid($event)"></nb-toggle>
       </nb-card-header>
       <nb-card-body>
         <svg width="5" height="180" viewBox="0 0 5 180" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,6 +71,12 @@ export class VerticalPidComponent implements OnInit {
    */
   calculateMargin() {
     this.actualMargin = -this.difference * 180;
+  }
+
+  togglePid(e) {
+    this.rovService.topic('verticalPidEnable').publish({
+      data: e,
+    });
   }
 
 }
