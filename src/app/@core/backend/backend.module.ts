@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RovData} from '../interfaces/rov.interface';
+import {RovData} from '../interfaces/rov.class';
 import {RovService} from './services/rov.service';
 
 const SERVICES = [

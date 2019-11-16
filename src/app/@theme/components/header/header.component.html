@@ -11,10 +11,10 @@
 </div>
 
 <div class="header-container">
-  <nb-alert status="danger" class="my-auto mx-2">Topside Running</nb-alert>
-  <nb-alert status="danger" class="my-auto mx-2">Bottomside Running</nb-alert>
-  <nb-alert status="danger" class="my-auto mx-2">ROV Powered</nb-alert>
-  <nb-alert status="danger" class="my-auto mx-2">ROV Enabled</nb-alert>
+  <nb-alert [status]="topsideConnected ? 'success' : 'danger'" class="my-auto mx-2">Topside Running</nb-alert>
+  <nb-alert [status]="bottomsideConnected ? 'success' : 'danger'" class="my-auto mx-2">Bottomside Running</nb-alert>
+  <nb-alert [status]="rovPowered ? 'success' : 'danger'" class="my-auto mx-2">ROV Powered</nb-alert>
+  <nb-alert [status]="rovEnabled ? 'success' : 'danger'" class="my-auto mx-2">ROV Enabled</nb-alert>
   <nb-icon icon="clock-outline" class="my-auto mx-2"></nb-icon>
   <button nbButton hero status="success" class="mx-1" *ngIf="stopped" (click)="startTimer()">Start</button>
   <button nbButton hero status="danger" class="mx-1" *ngIf="!stopped" (click)="stopTimer()">Stop</button>

@@ -1,66 +1,91 @@
-import {Injectable} from '@angular/core';
-import 'assets/roslib'
+import {Injectable, OnDestroy} from '@angular/core';
+import 'assets/roslib';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {RovData, RovInterface} from '../../interfaces/rov.interface';
+import {Rov} from '../../interfaces/rov.class';
+
+declare const ROSLIB;
 
 @Injectable({
     providedIn: 'root',
 })
-export class RovService {
+export class RovService implements OnDestroy {
     private ros;
-    private subscriberConnected: BehaviorSubject<boolean>;
-    private rov: RovInterface;
+    public connected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+    ngOnDestroy(): void {
+        for (let i = 0; i < this.topicInformation.length; i++) {
+            this.subscribers[i].unsubscribe();
+        }
+    }
 
     /**
      * List of subscriber information that is later initialized
      */
-    private subscriberInformation = [
-        {key: 'horizontalDrive', name: '/rov/cmd_horizontal_vdrive', messageType: 'vector_drive/thrusterPercents'},
+    private topicInformation = [
+        {key: 'verticalDrive', name: '/rov/cmd_horizontal_vdrive', messageType: 'vector_drive/thrusterPercents'},
+        {key: 'horizontalDrive', name: '/rov/cmd_horizontal_hdrive', messageType: 'vector_drive/thrusterPercents'},
+        {key: 'drq1', name: '/rov/drq1250_1', messageType: 'drq1250/DRQ1250'},
+        {key: 'drq2', name: '/rov/drq1250_2', messageType: 'drq1250/DRQ1250'},
+        {key: 'cameras', name: '/rov/camera_select', messageType: 'std_msgs/UInt8'},
+        {key: 'inversion', name: '/rov/inversion', messageType: 'std_msgs/UInt8'},
+        {key: 'sensitivity', name: '/rov/sensitivity', messageType: 'rov_control_interface/rov_sensitivity'},
+        {key: 'thrusterStatus', name: '/rov/thruster_status', messageType: 'std_msgs/Bool'},
+        {key: 'cameraSelect', name: '/rov/camera_select', messageType: 'std_msgs/UInt8'},
+        {key: 'tcuPower', name: '/tcu/main_relay', messageType: 'std_msgs/Bool'},
         {key: 'test', name: '/test', messageType: 'std_msgs/UInt8'},
     ];
 
     /**
      * Array of subscribers
      */
-    private subscribers = Array<rosSubscriber>();
+    private subscribers = Array<RosSubscriber>();
 
-    constructor() {
+    constructor(
+    ) {
         this.ros = new ROSLIB.Ros({
-            url: 'ws://master:9090'
+            url: 'ws://master:9090',
         });
 
-        this.subscriberConnected = new BehaviorSubject<boolean>(false);
+        this.connected.next(false);
         this.initializeRosConnection();
         this.initializeRov();
-    }x
+    }
 
     initializeRosConnection(): boolean {
-        this.ros.on('error', (e) => { console.log(e)});
-        this.ros.on('connection', () => {this.subscriberConnected.next(true); console.log('connected')});
-        this.ros.on('close', () => {this.subscriberConnected.next(false)});
-        const listener = new ROSLIB.Topic({
-            ros: this.ros,
-            name: '/test',
-            messageType: 'std_msgs/UInt8',
+        this.ros.on('error', (e) => {
+            // TODO Alert User
         });
-        listener.subscribe(msg => {console.log(msg)})
+        this.ros.on('connection', () => {
+            this.connected.next(true);
+            // TODO Alert
+        });
+        this.ros.on('close', () => {this.connected.next(false)});
         return true;
     }
 
     initializeRov(): boolean {
-        console.log('Initializing');
         /**
          * Initializes all ROS connections
          */
-        // for (let i = 0; i < this.subscriberInformation.length; i++) {
-        //     this.subscribers[i] = new rosSubscriber(this.subscriberInformation[i].key, this.subscriberInformation[i].name, this.subscriberInformation[i].messageType, this.ros);
-        //     console.log('Initializing subsribers');
-        //     this.subscribers[i].initialize();
-        // }
-        // this.subscribers.find(o => o.key === 'test').data.subscribe(v => console.log(v));
+        for (let i = 0; i < this.topicInformation.length; i++) {
+            this.subscribers[i] = new RosSubscriber(this.topicInformation[i].key, this.topicInformation[i].name, this.topicInformation[i].messageType, this.ros);
+        }
         return true;
     }
+    //
+    // publishTopic(key, data): void {
+    //     this.subscribers.find(o => o.key === key).publish(data);
+    // }
+    //
+    // subscribeTopic(key): Observable<any> {
+    //     return this.subscribers.find(key).data;
+    // }
 
+    topic(key: string) {
+        return this.subscribers.find(o => o.key === key);
+    }
+
+    // TOPIC Subscribers
 }
 
 /**
@@ -69,11 +94,11 @@ export class RovService {
  * @param messageType: string - i.e. 'vector_drive/thrusterPercents'
  * @param ROS - initialized ros object
  */
-export class rosSubscriber {
+export class RosSubscriber {
 
     public key: string;
     private _data: Subject<any>;
-    private lastPublishedValue: any;
+    private lastValue: any;
     private topic: any;
 
     constructor(
@@ -93,30 +118,37 @@ export class rosSubscriber {
         this.topic = new ROSLIB.Topic({
             ros: this.ros,
             name: this.name,
-            messageType: this.messageType
+            messageType: this.messageType,
         });
         this._data = new Subject<any>();
-        console.log('t');
 
         this.topic.subscribe((message) => {
             // Check that you aren't subscribing to last published value, prevent echo
-            console.log(message);
-            message !== this.lastPublishedValue ? this._data.next(message) : null;
-        })
-    }
-
-    publish(data): boolean {
-        const message = new ROSLIB.Message({
-            data,
+            this._data.next(message);
         });
-        this.lastPublishedValue = data;
-        return this.topic.publish(message).then(value => {
-            return true;
-        }, reason => {
-            return false;
-        })
     }
 
+    /**
+     * Publish data
+     * @param data - Object representing completed ROS message object
+     */
+    publish(data): boolean {
+        // console.log(data);
+        if (data !== this.lastValue) {
+            const message = new ROSLIB.Message(data);
+            this.lastValue = message;
+            this.topic.publish(message);
+        }
+        return true;
+    }
+
+    unsubscribe() {
+        this.topic.unsubscribe();
+    }
+
+    /**
+     * Returns Data as observable
+     */
     get data(): Observable<any> {
         return this._data.asObservable();
     }

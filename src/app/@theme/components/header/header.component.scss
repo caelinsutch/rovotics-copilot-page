@@ -13,6 +13,10 @@
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
   }
 
+  nb-alert {
+    padding: 0.5rem 1rem;
+  }
+
   nb-action {
     height: auto;
     display: flex;

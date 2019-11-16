@@ -23,6 +23,8 @@ import { SensitivitySliderComponent } from './sensitivity/sensitivity-slider.com
 import { DepthChartComponent } from './telemetry/backside/depth-chart.component';
 import { BacksideComponent } from './telemetry/backside/backside.component';
 import { FrontsideComponent } from './telemetry/frontside/frontside.component';
+import { VerticalPidComponent } from './vertical-pid/vertical-pid.component';
+import { HorizontalPidComponent } from './horizontal-pid/horizontal-pid.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -54,6 +56,6 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [...NB_MODULES, ThemeModule, NgxEchartsModule],
-  declarations: [...COMPONENTS, DialComponent, SensitivitySliderComponent, DepthChartComponent, BacksideComponent, FrontsideComponent],
+  declarations: [...COMPONENTS, DialComponent, SensitivitySliderComponent, DepthChartComponent, BacksideComponent, FrontsideComponent, VerticalPidComponent, HorizontalPidComponent],
 })
 export class DashboardModule { }

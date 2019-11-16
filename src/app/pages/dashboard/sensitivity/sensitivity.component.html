@@ -3,12 +3,12 @@
     Thruster Sensitivity
   </nb-card-header>
   <nb-card-body>
-    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(1, $event)" [inputSensitivity]="xSensitivity"></ngx-sensitivity-slider>
-    <p class="text-center my-2">X Axis - {{ xSensitivity }}</p>
-    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(2, $event)" [inputSensitivity]="ySensitivity"></ngx-sensitivity-slider>
-    <p class="text-center my-2">Y Axis - {{ ySensitivity }}</p>
-    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(3, $event)" [inputSensitivity]="zSensitivity"></ngx-sensitivity-slider>
-    <p class="text-center my-2">Z Axis - {{ zSensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(1, $event)" [inputSensitivity]="linearSensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Linear Axis - {{ linearSensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(2, $event)" [inputSensitivity]="angularSensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Angular Axis - {{ angularSensitivity }}</p>
+    <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(3, $event)" [inputSensitivity]="verticalSensitivity"></ngx-sensitivity-slider>
+    <p class="text-center my-2">Vertical Axis - {{ verticalSensitivity }}</p>
     <ngx-sensitivity-slider (sensitivityEmitter)="updateSensitivity(4, $event)"></ngx-sensitivity-slider>
     <p class="text-center my-2">Change All</p>
   </nb-card-body>

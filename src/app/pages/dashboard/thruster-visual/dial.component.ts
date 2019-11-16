@@ -21,11 +21,14 @@ declare const echarts: any;
     }
   `],
 })
-export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class DialComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   private alive = true;
+  private thrusterTheme;
+  private config;
+  private ignoreFirst = true;
 
-  @Input() liveThrusterData: { value: [string, number] }[];
+  @Input() liveThrusterData: number;
 
   echartsInstance: any;
   option: any = {};
@@ -35,8 +38,7 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.layoutService.onChangeLayoutSize()
         .pipe(
             takeWhile(() => this.alive),
-        )
-        .subscribe(() => this.resizeChart());
+        ).subscribe(() => this.resizeChart());
   }
 
 
@@ -44,18 +46,24 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.themeSubscription = this.theme.getJsTheme().pipe(delay(1)).subscribe(config => {
 
       const thrusterTheme: any = config.variables.thrusterTheme;
-      this.setChartOptions(thrusterTheme, config);
-
+      this.thrusterTheme = thrusterTheme;
+      this.config = config;
+      this.setChartOptions();
     });
+
+    // this.updateChartOptions(12);
+    // setTimeout(() => this.updateChartOptions(40), 2000);
   }
 
   ngOnChanges(): void {
-    if (this.option) {
+    if (!this.ignoreFirst) {
       this.updateChartOptions(this.liveThrusterData);
     }
+    this.ignoreFirst = false;
+
   }
 
-  setChartOptions(thrusterTheme, config) {
+  setChartOptions() {
     this.option = Object.assign({}, {
       tooltip: {
         trigger: 'item',
@@ -63,7 +71,7 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
       },
       series: [
         {
-          name: ' ',
+          name: '0',
           clockWise: true,
           hoverAnimation: false,
           type: 'pie',
@@ -71,17 +79,16 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
           radius: ['70%', '90%'],
           data: [
             {
-              value: 13,
-              name: ' ',
+              value: 50,
               label: {
                 normal: {
                   position: 'center',
                   formatter: '{d}%',
                   textStyle: {
                     fontSize: '16',
-                    fontFamily: config.variables.fontSecondary,
+                    fontFamily: this.config.variables.fontSecondary,
                     fontWeight: '600',
-                    color: config.variables.fgHeading,
+                    color: this.config.variables.fgHeading,
                   },
                 },
               },
@@ -93,14 +100,14 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
                   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     {
                       offset: 0,
-                      color: thrusterTheme.gradientLeft,
+                      color: this.thrusterTheme.gradientLeft,
                     },
                     {
                       offset: 1,
-                      color: thrusterTheme.gradientRight,
+                      color: this.thrusterTheme.gradientRight,
                     },
                   ]),
-                  shadowColor: thrusterTheme.shadowColor,
+                  shadowColor: this.thrusterTheme.shadowColor,
                   shadowBlur: 0,
                   shadowOffsetX: 0,
                   shadowOffsetY: 3,
@@ -109,8 +116,7 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
               hoverAnimation: false,
             },
             {
-              value: 87,
-              name: ' ',
+              value: 50,
               tooltip: {
                 show: false,
               },
@@ -121,7 +127,7 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
               },
               itemStyle: {
                 normal: {
-                  color: thrusterTheme.secondSeriesFill,
+                  color: this.thrusterTheme.secondSeriesFill,
                 },
               },
             },
@@ -129,15 +135,80 @@ export class DialComponent implements AfterViewInit, OnChanges, OnDestroy {
         },
       ],
     });
-
   }
 
-  updateChartOptions(chartData: { value: [string, number] }[]) {
+  updateChartOptions(number: number) {
     this.echartsInstance.setOption({
-      series: [{
-        data: chartData,
-      }],
-    });
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)',
+      },
+      series: [
+        {
+          name: '0',
+          clockWise: true,
+          hoverAnimation: false,
+          type: 'pie',
+          center: ['45%', '50%'],
+          radius: ['70%', '90%'],
+          data: [
+            {
+              value: number,
+              label: {
+                normal: {
+                  position: 'center',
+                  formatter: '{d}%',
+                  textStyle: {
+                    fontSize: '16',
+                    fontFamily: this.config.variables.fontSecondary,
+                    fontWeight: '600',
+                    color: this.config.variables.fgHeading,
+                  },
+                },
+              },
+              tooltip: {
+                show: false,
+              },
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    {
+                      offset: 0,
+                      color: this.thrusterTheme.gradientLeft,
+                    },
+                    {
+                      offset: 1,
+                      color: this.thrusterTheme.gradientRight,
+                    },
+                  ]),
+                  shadowColor: this.thrusterTheme.shadowColor,
+                  shadowBlur: 0,
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 3,
+                },
+              },
+              hoverAnimation: false,
+            },
+            {
+              value: 100-number,
+              tooltip: {
+                show: false,
+              },
+              label: {
+                normal: {
+                  position: 'inner',
+                },
+              },
+              itemStyle: {
+                normal: {
+                  color: this.thrusterTheme.secondSeriesFill,
+                },
+              },
+            },
+          ],
+        },
+      ],
+    })
   }
 
   onChartInit(ec) {

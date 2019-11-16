@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RovService} from '../../../@core/backend/services/rov.service';
 
 
 interface Camera {
@@ -19,7 +20,9 @@ export class CameraSwitcherComponent implements OnInit {
   test = [];
   cameras: Array<Camera>;
 
-  constructor() { }
+  constructor(
+      private rovService: RovService,
+  ) { }
 
   ngOnInit() {
     // Initialize Camera List
@@ -40,7 +43,7 @@ export class CameraSwitcherComponent implements OnInit {
         number: 3,
         connected: true,
         activatedMain: false,
-        activatedSecondary: true,
+        activatedSecondary: false,
       },
       {
         number: 4,
@@ -67,6 +70,31 @@ export class CameraSwitcherComponent implements OnInit {
         activatedSecondary: false,
       },
     ];
+  }
+
+  /**
+   * Switch Cameras
+   * @param value
+   */
+  cameraSwitch(value: number) {
+    this.resetCamera();
+    this.cameras.find(o => o.number === value).activatedMain = true;
+    this.rovService.topic('cameraSelect').publish(this.formulateMessage(value));
+  }
+
+  resetCamera() {
+    for (let i = 0; i < this.cameras.length; i++) {
+      this.cameras[i].activatedMain = false;
+      this.cameras[i].activatedSecondary = false;
+    }
+  }
+
+  /**
+   * Parses message for ROS
+   * @param value
+   */
+  formulateMessage(value: number) {
+    return {data: value};
   }
 
 }

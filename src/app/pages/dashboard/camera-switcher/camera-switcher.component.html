@@ -3,8 +3,8 @@
   <nb-card-body>
   <div class="row">
     <div class="col-4 my-2" *ngFor="let camera of cameras">
-      <button nbButton [outline]="!camera.activatedMain" [disabled]="!camera.connected" size="large" fullWidth
-              [status]="(camera.activatedMain || camera.activatedSecondary) ? 'success' : 'danger'">{{ camera.number }}</button>
+      <button nbButton [disabled]="!camera.connected" size="large" fullWidth
+              [status]="(camera.activatedMain || camera.activatedSecondary) ? 'success' : 'danger'" (click)="cameraSwitch(camera.number)">{{ camera.number }}</button>
     </div>
     <nb-badge text="3 cameras online" status="success" position="bottom right"></nb-badge>
   </div>

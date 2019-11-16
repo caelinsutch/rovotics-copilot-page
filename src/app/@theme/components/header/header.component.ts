@@ -3,6 +3,7 @@ import { NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme'
 
 import { map, takeUntil } from 'rxjs/operators';
 import {fromEvent, Subject} from 'rxjs';
+import {RovService} from '../../../@core/backend/services/rov.service';
 
 @Component({
   selector: 'ngx-header',
@@ -12,6 +13,10 @@ import {fromEvent, Subject} from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
+  rovEnabled: boolean;
+  topsideConnected: boolean;
+  bottomsideConnected: boolean;
+  rovPowered: boolean;
 
   themes = [
     {
@@ -37,6 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
+              private rovService: RovService,
   ) {
   }
 
@@ -50,6 +56,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    this.rovService.topic('thrusterStatus').data.subscribe((v) => {this.rovEnabled = v.data;});
+    this.rovService.connected.subscribe(v => this.topsideConnected = v);
+    this.rovService.topic('tcuPower').data.subscribe(v => this.rovPowered = v.data);
   }
 
   ngOnDestroy() {
