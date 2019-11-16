@@ -1,7 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import 'assets/roslib';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Rov} from '../../interfaces/rov.class';
 
 declare const ROSLIB;
 
@@ -32,6 +31,8 @@ export class RovService implements OnDestroy {
         {key: 'thrusterStatus', name: '/rov/thruster_status', messageType: 'std_msgs/Bool'},
         {key: 'cameraSelect', name: '/rov/camera_select', messageType: 'std_msgs/UInt8'},
         {key: 'tcuPower', name: '/tcu/main_relay', messageType: 'std_msgs/Bool'},
+        {key: 'externalTelemetry', name: '/rov/ms5837', messageType: 'ms5837/ms5837_data'},
+        {key: 'verticalPidSetPoint', name: '/depth_hold/setpoint', messageType: 'std_msgs/Float64'},
         {key: 'test', name: '/test', messageType: 'std_msgs/UInt8'},
     ];
 
