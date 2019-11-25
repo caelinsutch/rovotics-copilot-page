@@ -25,6 +25,10 @@ import { BacksideComponent } from './telemetry/backside/backside.component';
 import { FrontsideComponent } from './telemetry/frontside/frontside.component';
 import { VerticalPidComponent } from './vertical-pid/vertical-pid.component';
 import { HorizontalPidComponent } from './horizontal-pid/horizontal-pid.component';
+import { HorizontalRovVisualizationComponent } from './horizontal-rov-visualization/horizontal-rov-visualization.component';
+import { VerticalRovVisualizationComponent } from './vertical-rov-visualization/vertical-rov-visualization.component';
+import { ThrusterComponent } from './horizontal-rov-visualization/thruster/thruster.component';
+import { ThrusterSliderComponent } from './horizontal-rov-visualization/thruster-slider/thruster-slider.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -57,6 +61,6 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [...NB_MODULES, ThemeModule, NgxEchartsModule],
-  declarations: [...COMPONENTS, DialComponent, SensitivitySliderComponent, DepthChartComponent, BacksideComponent, FrontsideComponent, VerticalPidComponent, HorizontalPidComponent],
+  declarations: [...COMPONENTS, DialComponent, SensitivitySliderComponent, DepthChartComponent, BacksideComponent, FrontsideComponent, VerticalPidComponent, HorizontalPidComponent, HorizontalRovVisualizationComponent, VerticalRovVisualizationComponent, ThrusterComponent, ThrusterSliderComponent],
 })
 export class DashboardModule { }

@@ -29,15 +29,15 @@ export class ThrusterVisualComponent implements OnInit{
 
   ngOnInit() {
     this.rovService.topic('horizontalDrive').data.subscribe(v => {
-      this.thrusters[0] = v.t1;
-      this.thrusters[1] = v.t2;
-      this.thrusters[4] = v.t3;
-      this.thrusters[5] = v.t4;
+      this.thrusters[0] = (v.t1 + 100) / 2;
+      this.thrusters[1] = (v.t2 + 100) / 2;
+      this.thrusters[4] = (v.t3 + 100) / 2;
+      this.thrusters[5] = (v.t4 + 100) / 2;
     });
 
     this.rovService.topic('verticalDrive').data.subscribe(v => {
-      this.thrusters[2] = v.t1;
-      this.thrusters[3] = v.t1;
+      this.thrusters[2] = (v.t1 + 100) / 2;
+      this.thrusters[3] = (v.t2 + 100) / 2;
     });
   }
 }

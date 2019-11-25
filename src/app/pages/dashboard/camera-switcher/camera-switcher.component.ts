@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RovService} from '../../../@core/backend/services/rov.service';
+import {fromEvent} from 'rxjs';
 
 
 interface Camera {
@@ -17,7 +18,6 @@ interface Camera {
 
 export class CameraSwitcherComponent implements OnInit {
 
-  test = [];
   cameras: Array<Camera>;
 
   constructor(
@@ -25,6 +25,7 @@ export class CameraSwitcherComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    fromEvent(document, 'keyup').pipe().subscribe(character => this.keyPress(character));
     // Initialize Camera List
     this.cameras = [
       {
@@ -73,15 +74,28 @@ export class CameraSwitcherComponent implements OnInit {
   }
 
   /**
+   * Handle keypresses
+   * @param event
+   */
+  keyPress(event) {
+    this.cameraSwitch(Number(event.key));
+  }
+
+  /**
    * Switch Cameras
    * @param value
    */
   cameraSwitch(value: number) {
-    this.resetCamera();
-    this.cameras.find(o => o.number === value).activatedMain = true;
-    this.rovService.topic('cameraSelect').publish(this.formulateMessage(value));
+    if (value < 8 && this.cameras.find(o => o.number === value).connected === true) {
+      this.resetCamera();
+      this.cameras.find(o => o.number === value).activatedMain = true;
+      this.rovService.topic('cameraSelect').publish(this.formulateMessage(value));
+    }
   }
 
+  /**
+   * Reset all camera activated values
+   */
   resetCamera() {
     for (let i = 0; i < this.cameras.length; i++) {
       this.cameras[i].activatedMain = false;

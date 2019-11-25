@@ -1,0 +1,43 @@
+@import '../../../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .slider-wrap {
+    margin-top: 30%;
+    position: relative;
+    height: 1rem;
+  }
+
+  .slider-foreground {
+    background-color: nb-theme(color-primary-default);
+    height: 5px;
+    position: absolute;
+    left: 0;
+    width: 100px;
+  }
+
+  .slider-background {
+    background-color: nb-theme(border-basic-color-3);
+    height: 5px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  .slider {
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    height: 1.5rem;
+    outline: none;
+    position: absolute;
+
+    @include install-track() {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: nb-theme(border-basic-color-3);
+    }
+  }
+}
