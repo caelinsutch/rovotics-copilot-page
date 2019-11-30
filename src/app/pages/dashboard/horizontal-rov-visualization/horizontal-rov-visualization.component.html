@@ -3,20 +3,24 @@
   <nb-card-body>
     <div class="row my-3">
       <div class="col-3" style="transform: rotate(45deg);">
-        <ngx-thruster></ngx-thruster>
+<!--        Thruster 2-->
+        <ngx-thruster [inputThrusterPercentage]="thruster2"></ngx-thruster>
       </div>
       <div class="col-3"></div>
       <div class="col-3" style="transform: rotate(-225deg);">
-        <ngx-thruster></ngx-thruster>
+<!--        Thruster 3 -->
+        <ngx-thruster [inputThrusterPercentage]="thruster3"></ngx-thruster>
       </div>
     </div>
     <div class="row mt-5">
       <div class="col-3" style="transform: rotate(-45deg);">
-        <ngx-thruster></ngx-thruster>
+<!--        Thruster 1-->
+        <ngx-thruster [inputThrusterPercentage]="thruster1"></ngx-thruster>
       </div>
       <div class="col-3"></div>
       <div class="col-3" style="transform: rotate(-135deg);">
-        <ngx-thruster></ngx-thruster>
+<!--        Thruster 4-->
+        <ngx-thruster [inputThrusterPercentage]="thruster4"></ngx-thruster>
       </div>
     </div>
   </nb-card-body>

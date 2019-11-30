@@ -16,18 +16,18 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 export class ThrusterComponent implements OnChanges {
 
   @Input() inputThrusterPercentage: number = 100;
-  positiveVector: number = 30;
-  negativeVector: number = 10;
+  positiveVector: number = 0;
+  negativeVector: number = 0;
 
   constructor() { }
 
   ngOnChanges() {
     if (this.inputThrusterPercentage < 0) {
       this.positiveVector = 0;
-      this.negativeVector = (Math.abs(this.inputThrusterPercentage) + 100) / 2;
+      this.negativeVector = Math.abs(this.inputThrusterPercentage);
     } else {
       this.negativeVector = 0;
-      this.positiveVector = (Math.abs(this.inputThrusterPercentage) + 100) / 2;
+      this.positiveVector = Math.abs(this.inputThrusterPercentage);
 
     }
   }
