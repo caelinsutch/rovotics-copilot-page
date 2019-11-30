@@ -1,16 +1,16 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  NbActionsModule,
-  NbLayoutModule,
-  NbMenuModule,
-  NbSearchModule,
-  NbSidebarModule,
-  NbContextMenuModule,
-  NbButtonModule,
-  NbSelectModule,
-  NbIconModule,
-  NbThemeModule, NbAlertModule,
+    NbActionsModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbSearchModule,
+    NbSidebarModule,
+    NbContextMenuModule,
+    NbButtonModule,
+    NbSelectModule,
+    NbIconModule,
+    NbThemeModule, NbAlertModule, NbPopoverModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -62,7 +62,7 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+    imports: [CommonModule, ...NB_MODULES, NbPopoverModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })

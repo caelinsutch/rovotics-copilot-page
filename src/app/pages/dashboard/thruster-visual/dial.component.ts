@@ -83,7 +83,9 @@ export class DialComponent implements AfterViewInit, OnDestroy, OnChanges {
               label: {
                 normal: {
                   position: 'center',
-                  formatter: '{d}%',
+                  formatter: (params) => {
+                    return ((params.data.value - 50) + '%');
+                  },
                   textStyle: {
                     fontSize: '16',
                     fontFamily: this.config.variables.fontSecondary,
@@ -157,7 +159,11 @@ export class DialComponent implements AfterViewInit, OnDestroy, OnChanges {
               label: {
                 normal: {
                   position: 'center',
-                  formatter: '{d}%',
+                  formatter: (params) => {
+                    let prefix = '';
+                    if (params.data.value < 50) {prefix = '-'};
+                    return (prefix + ((params.data.value - 50) * 2) + '%');
+                  },
                   textStyle: {
                     fontSize: '16',
                     fontFamily: this.config.variables.fontSecondary,

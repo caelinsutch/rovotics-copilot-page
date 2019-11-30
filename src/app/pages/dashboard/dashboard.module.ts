@@ -3,9 +3,9 @@ import {
   NbActionsModule, NbAlertModule, NbBadgeModule, NbButtonModule,
   NbCardModule, NbContextMenuModule, NbIconModule,
   NbLayoutModule, NbListModule,
-  NbMenuModule,
+  NbMenuModule, NbPopoverModule,
   NbSearchModule, NbSelectModule,
-  NbSidebarModule, NbTabsetModule, NbToggleModule,
+  NbSidebarModule, NbTabsetModule, NbToggleModule, NbTooltipModule,
 } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -47,6 +47,7 @@ const NB_MODULES = [
   NbTabsetModule,
   NbListModule,
   NbToggleModule,
+  NbPopoverModule,
 ];
 
 const COMPONENTS = [

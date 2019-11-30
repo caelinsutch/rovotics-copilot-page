@@ -1,3 +1,16 @@
-<p>
-  vertical-rov-visualization works!
-</p>
+<nb-card size="tiny">
+  <nb-card-header>Horizontal ROV Visualization</nb-card-header>
+  <nb-card-body>
+    <div class="row my-5 mx-auto">
+      <div class="col-4" style="transform: rotate(-90deg);">
+        <!--        Thruster 1-->
+        <ngx-thruster [inputThrusterPercentage]="thruster1"></ngx-thruster>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4" style="transform: rotate(-90deg);">
+        <!--        Thruster 2 -->
+        <ngx-thruster [inputThrusterPercentage]="thruster2"></ngx-thruster>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
