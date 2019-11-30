@@ -160,9 +160,7 @@ export class DialComponent implements AfterViewInit, OnDestroy, OnChanges {
                 normal: {
                   position: 'center',
                   formatter: (params) => {
-                    let prefix = '';
-                    if (params.data.value < 50) {prefix = '-'};
-                    return (prefix + ((params.data.value - 50) * 2) + '%');
+                    return (((params.data.value - 50) * 2) + '%');
                   },
                   textStyle: {
                     fontSize: '16',
